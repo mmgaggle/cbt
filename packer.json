@@ -1,0 +1,26 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-1",
+    "source_ami": "ami-12663b7a",
+    "instance_type": "m3.xlarge",
+    "ssh_username": "ec2-user",
+    "ami_name": "cbt {{timestamp}}",
+    "ssh_pty": true
+  }],
+  "provisioners": [{
+     "type": "file",
+     "source": "setup.sh",
+     "destination": "setup.sh"
+  },{
+    "type": "shell",
+    "script": "setup.sh",
+    "execute_command": "/bin/sh {{ .Path }}"
+  }]
+}
