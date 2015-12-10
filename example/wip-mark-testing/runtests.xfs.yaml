@@ -1,16 +1,16 @@
 cluster:
-  user: 'nhm'
-  head: "burnupiX"
-  clients: ["burnupiY"]
-  osds: ["burnupiX"]
+  user: 'ec2-user'
+  head: "head"
+  clients: ["head"]
+  osds: ["head"]
   mons:
     burnupiY:
-      a: "192.168.10.2:6789"
+      a: "--mon_ip--:6789"
   osds_per_node: 4 
   fs: 'xfs'
   mkfs_opts: '-f -i size=2048 -n size=64k'
   mount_opts: '-o inode64,noatime,logbsize=256k'
-  conf_file: '/home/nhm/src/cbt/example/wip-mark-testing/ceph.conf'
+  conf_file: '/home/ec2-user/cbt/example/wip-mark-testing/ceph.conf'
   iterations: 1
   use_existing: False
   clusterid: "ceph"
@@ -43,7 +43,7 @@ benchmarks:
     volumes_per_client: [1]
     iodepth: [32]
     osd_ra: [4096]
-    cmd_path: '/home/nhm/src/fio/fio'
+    cmd_path: '/usr/bin/fio'
     pool_profile: 'rbd'
     log_avg_msec: 100
   rbdfio:
@@ -55,6 +55,6 @@ benchmarks:
     concurrent_procs: [1]
     iodepth: [32]
     osd_ra: [4096]
-    cmd_path: '/home/nhm/src/fio/fio'
+    cmd_path: '/usr/bin/fio'
     pool_profile: 'rbd'
     log_avg_msec: 100

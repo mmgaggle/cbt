@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     ]
     end
     cbt_config.ssh.pty = true
-    #cbt_config.vm.provision "file", source: "setup.sh", destination: "setup.sh"
-    #cbt_config.vm.provision "shell", path: "setup.sh", args: [branch]
+    cbt_config.vm.provision "file", source: "init.sh", destination: "init.sh"
+    cbt_config.vm.provision "shell", path: "init.sh", args: [ENV['BRANCH'], ENV['CBT_REPO']]
   end
 end
