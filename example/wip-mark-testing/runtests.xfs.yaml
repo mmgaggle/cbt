@@ -4,7 +4,7 @@ cluster:
   clients: ["head"]
   osds: ["head"]
   mons:
-    burnupiY:
+    head:
       a: "--mon_ip--:6789"
   osds_per_node: 4 
   fs: 'xfs'
